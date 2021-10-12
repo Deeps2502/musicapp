@@ -1,0 +1,22 @@
+{% extends 'dailytunes/base.html' %}
+
+{% block title %}SignUp{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+
+<h3><strong>You will have to logout and sign in as a new user</strong></h3>
+<small>Do you want to <a href="{% url 'dailytunes:logout' %}"><strong>LogOut</strong></a></small>
+
+{% else %}
+     {% if message %}
+              <li style="list-style-type:none;"><h3><strong>{{ message }}</strong></h3></li>
+      {% endif %}
+  <h2 style="text-align: center; background-color: yellow;">SignUp</h2>
+<form method="post" style="text-align:center">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit"; style="background-color: yellow;">SignUp</button>
+  </form>
+{% endif %}
+{% endblock %}
